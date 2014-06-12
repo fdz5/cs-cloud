@@ -1,5 +1,5 @@
 % **Przetwarzanie w chmurze**  
-  Podsumowanie wdrożenia na stosie usług Amazon Web Services
+  System śledzenia pojazdów
 % Łukasz Brewczyński; Filip Dziedzic; Michał Pałka; Rafał Studnicki 
 % Informatyka   
   Wydział Elektrotechniki, Automatyki, Informatyki i Inżynierii Biomedycznej  
@@ -8,10 +8,31 @@
 
 ## 1. Wprowadzenie
 
+Celem projektu jest zaprojektowanie, implementacja oraz wdrożenie systemu umożliwiającego śledzenie i wizualizację ruchu pojazdów.
+
+Do podstawowych komponentów systemu zaliczamy:
+
+* aplikację mobilną, mającą za zadanie odczyt aktualnego położenia;
+* serwer aplikacji, udostępniający usługi systemu;
+* bazę danych;
+* aplikację webową, pozwalającą na wizualizację oraz dostęp do usług za pomocą przeglądarki internetowej.
+
+Do przypadków użycia systemu zaliczamy:
+
+* śledzenie floty korporacyjnej;
+* śledzenie pojazdów specjalnych:
+    - z ustaloną wcześniej trasą (np. konwoje);
+    - spedycyjne, ze znaną wcześniej trasą, śledzenie postępu realizacji zadania;
+* rejestracja tras dla celów prywatnych.
+
+## 2. Wdrożenie na stosie usług Amazon Web Services
+
+### 2.1. Wprowadzenie
+
 Jednym z elementów projektu z przedmiotu *Przetwarzanie w chmurze* było wdrożenie przykładowej aplikacji na jednym ze stosów technologicznych udostępniających usługi w chmurze. Wybranym przez nas zestawem usług był **Amazon Web Services**. 
 Z kolei wdrażaną aplikacją był system śledzenia pojazdów składający się z aplikacji udostępniającej logikę biznesową, klienta webowego oraz klienta mobilnego.
 
-## 2. Instancje EC2
+### 2.2. Instancje EC2
 
 Aplikacja do działania potrzebuje maszyny wirtualnej Javy w wersji przynajmniej 1.7 oraz serwera HTTP **Netty**.
 Jedynym wymaganiem klienta webowego jest serwer HTTP serwujący statyczne pliki, w naszym przypadku był to **nginx**.
@@ -22,7 +43,7 @@ Na rysunku 1 widać zrzut ekranu z panelu zarządzania uruchomionymi instancjami
 
 ![Podsumowanie uruchomionych instancji EC2](img/instances.png)
 
-## 3. Elastic Load Balancer
+### 2.3. Elastic Load Balancer
 
 Celem uruchomienia większej liczby instancji jest wysoka dostępność uruchomionej aplikacji. W przypadku awarii jednej z nich, druga może wziąć na siebie obsługę zapytań. W sytuacji normalnego funkcjonowania instancji, *load balancer* decyduje do której instancji przekierować zapytanie, dzięki czemu ruch jest rozłożony na więcej niż jedną maszynę.
 
@@ -60,7 +81,7 @@ Sposób konfiguracji *lepkości* sesji w naszym projekcie został przedstawiony 
 
 ![Konfiguracja *lepkości* sesji w load balancerze *vehicle*](img/lb-stickiness.png)
 
-## 4. Relational Database Service
+### 2.4. Relational Database Service
 
 Komponentem wymaganym do działania przykładowej aplikacji śledzenia jest relacyjna baza danych. **Relational Database Service** zapewnia silniki bazodanowe dla MySQL, PostgreSQL, Oracle oraz Microsoft SQL Server. Wybranym przez nas silnikiem jest PostgreSQL. 
 
@@ -70,7 +91,7 @@ Podsumowanie konfiguracji uruchomionej przez nas instancji relacyjnej bazy danyc
 
 ![Instancja bazy danych PostgreSQL w AWS](img/rds.png)
 
-## 5. Route 53
+### 2.5. Route 53
 
 Ostatnim elementem wdrożenia aplikacji było uruchomienie strefy DNS dla wybranej przez nas domeny w usłudze **Route 53**, działającej jak serwer DNS.
 
@@ -80,8 +101,12 @@ Lista wpisów DNS została przedstawiona na rysunku 8. Jak można zauważyć, wp
 
 ![Konfiguracja strefy DNS w **Route 53**](img/route53.png)
 
-## 6. Podsumowanie
+### 2.6. Podsumowanie
 
 Stos usług **Amazon Web Services** pozwala na uruchomienie wymaganych przez nas do wdrożenia aplikacji usług w bardzo łatwy sposób. Wszystkie funkcjonalności dostępne są z konsoli webowej (sposób używany przez nas) lub API REST.
 
 Aplikacja kliencka będąca efektem wdrożenia dostępna jest pod adresem [http://trackme.malopolska.pl/](http://trackme.malopolska.pl/).
+
+\newpage
+
+## 3. Diagramy Archimate 2.0 dla systemu
