@@ -454,6 +454,21 @@
   </folder>
   <folder name="Views" id="9f50ba28" type="diagrams">
     <element xsi:type="archimate:ArchimateDiagramModel" id="ed25e203" name="Total" connectionRouterType="2">
+      <child xsi:type="archimate:Group" id="aaa44975" name="Warstwa technologiczna">
+        <bounds x="576" y="3096" width="2416" height="936"/>
+      </child>
+      <child xsi:type="archimate:Group" id="b69f7d81" name="Warstwa aplikacji">
+        <bounds x="576" y="1920" width="2416" height="1116"/>
+      </child>
+      <child xsi:type="archimate:Group" id="86bc0709" name="Warstwa biznesowa">
+        <bounds x="876" y="972" width="2116" height="872"/>
+      </child>
+      <child xsi:type="archimate:Group" id="c17eb3d2" name="Warstwa motywacji">
+        <bounds x="1860" y="36" width="1608" height="924"/>
+      </child>
+      <child xsi:type="archimate:Group" id="c121b453" name="Warstwa implementacji i migracji">
+        <bounds x="12" y="24" width="1824" height="936"/>
+      </child>
       <child xsi:type="archimate:DiagramObject" id="66f4839d" textAlignment="2" targetConnections="18e32d81" archimateElement="0bbf5edc">
         <bounds x="848" y="56" width="193" height="109"/>
         <sourceConnection xsi:type="archimate:Connection" id="b329cf7e" source="66f4839d" target="35fbfa4a" relationship="a89c1dc3">
